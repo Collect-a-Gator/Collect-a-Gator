@@ -115,7 +115,7 @@ const ClientApp = () => {
       <><SignedIn>
         <APIProvider apiKey={googleApiKey}>
 
-          {/* MAP*/}
+          {/* MAP*/} 
           <div slot="main" style={{ width: "100vw", height: "100vh" }}>
                 <Map defaultCenter={position} defaultZoom={15} mapId="5174ed5358f23a3c">
                     {markers
