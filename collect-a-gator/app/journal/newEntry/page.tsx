@@ -1,23 +1,14 @@
 'use client';
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
-import { 
-    Card, 
-    CardHeader, 
-    Grid,
-    IconButton,
-    Button,
-    Box,
-    CardContent,
-    Typography
-} from '@mui/material';
+import { Card, Grid, Button, Box, Typography } from '@mui/material';
 
 import { TextField } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useEffect, useRef, useState } from 'react';
-import {AdvancedMarker, APIProvider, ControlPosition, Map, MapControl, useMapsLibrary, useMap, useAdvancedMarkerRef} from '@vis.gl/react-google-maps';
+import { APIProvider, useMapsLibrary } from '@vis.gl/react-google-maps';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 

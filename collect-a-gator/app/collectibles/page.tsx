@@ -1,15 +1,6 @@
-'use client';
+'use client';;
 import * as React from 'react';
-import dayjs, { Dayjs } from 'dayjs';
-import { 
-    Card, 
-    CardHeader, 
-    Grid,
-    IconButton,
-    Button,
-    Container,
-    Typography
-} from '@mui/material';
+import { Grid, Container, Typography } from '@mui/material';
 
 //import Image from 'next/image';
 
@@ -27,7 +18,6 @@ import uf_gator from "./../images/uf_gator.png"
 import restaurant_gator from "./../images/restaurant_gator.png"
 import cafe_gator from "./../images/cafe_gator.png"
 
-import { AlignVerticalCenter } from '@mui/icons-material';
 //import { StaticImageData } from 'next/image';
 
 export default function CollectiblePage({
