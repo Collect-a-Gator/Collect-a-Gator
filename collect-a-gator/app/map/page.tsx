@@ -18,6 +18,9 @@ import karmacream_gator from "./../images/karmacream_gator.png"
 import marston_gator from "./../images/marston_gator.png"
 import culture_gator from "./../images/culture_gator.png"
 import nature_gator from "./../images/nature_gator.png"
+import uf_gator from "./../images/uf_gator.png"
+import restaurant_gator from "./../images/restaurant_gator.png"
+import cafe_gator from "./../images/cafe_gator.png"
 
 import { OverlayLayout as TOverlayLayout } from '@googlemaps/extended-component-library/overlay_layout.js';
 import { PlacePicker as TPlacePicker } from '@googlemaps/extended-component-library/place_picker.js';
@@ -34,42 +37,42 @@ const App = dynamic(() => Promise.resolve(ClientApp), { ssr: false });
 const markers = [
   //{ lat: 29.644859192414923, lng: -82.32228393500337, category: "park", title: "depot park", image: depot_gator},
   { lat: 29.660039837500698, lng: -82.327608563839, category: "restaurant", title: "germaines", image: germaines_gator},
-  { lat: 29.636522457001664, lng: -82.37027596013368, category: "museum", title: "butterfly garden", image: butterfly_gator},
+  { lat: 29.636522457001664, lng: -82.37027596013368, category: "culture", title: "butterfly garden", image: butterfly_gator},
   //{ lat: 29.652244871720377, lng: -82.33110328896925, category: "cafe", title: "karma cream", image: karmacream_gator},
-  // { lat: 29.6494508812314, lng: -82.34363722597145, category: "UF", title: "Marston Science Library", image: marston_gator },
-  { lat: 29.65144695774138, lng: -82.34292632002683, category: "UF", title: "Library West Humanities & Social Sciences", image: marston_gator },
-  { lat: 29.534656973659317, lng: -82.30503743167344, category: "UF", title: "UF Lake Wauburg North Shore", image: depot_gator },
-  { lat: 29.650611351795845, lng: -82.34881076463614, category: "UF", title: "Ben Hill Griffin Stadium", image: depot_gator },
-  { lat: 29.646596243997614, lng: -82.34778160468377, category: "UF", title: "Reitz Student Union", image: depot_gator },
-  { lat: 29.651053187261496, lng: -82.3428677978283, category: "UF", title: "Plaza of The Americas", image: depot_gator },
-  { lat: 29.64295164800919, lng: -82.36200703668369, category: "UF", title: "Lake Alice", image: depot_gator },
-  { lat: 29.64435966681451, lng: -82.36244691895224, category: "UF", title: "UF Bat Houses", image: depot_gator },
-  { lat: 29.64913455443091, lng: -82.34502161800916, category: "UF", title: "SweetBerries Eatery and Frozen Custard", image: karmacream_gator},
-  { lat: 29.650144154077438, lng: -82.34658796270031, category: "UF", title: "Student Recreation & Fitness Center", image: butterfly_gator},
-  { lat: 29.638503951810275, lng: -82.36781963590806, category: "UF", title: "Southwest Recreation Center", image: butterfly_gator},
+   { lat: 29.6494508812314, lng: -82.34363722597145, category: "UF", title: "Marston Science Library", image: marston_gator },
+  { lat: 29.65144695774138, lng: -82.34292632002683, category: "UF", title: "Library West Humanities & Social Sciences", image: uf_gator },
+  { lat: 29.534656973659317, lng: -82.30503743167344, category: "UF", title: "UF Lake Wauburg North Shore", image: uf_gator },
+  { lat: 29.650611351795845, lng: -82.34881076463614, category: "UF", title: "Ben Hill Griffin Stadium", image: uf_gator },
+  { lat: 29.646596243997614, lng: -82.34778160468377, category: "UF", title: "Reitz Student Union", image: uf_gator },
+  { lat: 29.651053187261496, lng: -82.3428677978283, category: "UF", title: "Plaza of The Americas", image: uf_gator },
+  { lat: 29.64295164800919, lng: -82.36200703668369, category: "UF", title: "Lake Alice", image: uf_gator },
+  { lat: 29.64435966681451, lng: -82.36244691895224, category: "UF", title: "UF Bat Houses", image: uf_gator },
+  { lat: 29.64913455443091, lng: -82.34502161800916, category: "UF", title: "SweetBerries Eatery and Frozen Custard", image: uf_gator},
+  { lat: 29.650144154077438, lng: -82.34658796270031, category: "UF", title: "Student Recreation & Fitness Center", image: uf_gator},
+  { lat: 29.638503951810275, lng: -82.36781963590806, category: "UF", title: "Southwest Recreation Center", image: uf_gator},
 
-  { lat: 29.6359013329591, lng: -82.33983966558394, category: "restaurant", title: "Momoyaki", image: germaines_gator },
-  { lat: 29.650388203434332, lng: -82.37597347537441, category: "restaurant", title: "Las Carretas", image: germaines_gator },
-  { lat: 29.623332841423434, lng: -82.37538518531986, category: "restaurant", title: "Red Rice Kitchen", image: germaines_gator },
-  { lat: 29.758364743624703, lng: -82.39295973720803, category: "restaurant", title: "Koto", image: germaines_gator },
-  { lat: 29.631838065754412, lng: -82.33962036997433, category: "restaurant", title: "La Tienda", image: germaines_gator },
-  { lat: 29.638315853180988, lng: -82.3394904330465, category: "restaurant", title: "Indian Aroma", image: germaines_gator },
-  { lat: 29.65197398083065, lng: -82.32519833304602, category: "restaurant", title: "Cry Babys", image: germaines_gator },
-  { lat: 29.67442900410965, lng: -82.30188480420941, category: "restaurant", title: "Satchels", image: germaines_gator },
-  { lat: 29.64827160463296, lng: -82.32877184838945, category: "restaurant", title: "Muneca’s Taco Garden", image: germaines_gator },
-  { lat: 29.646546190047477, lng: -82.32472713991532, category: "restaurant", title: "Luke’s Bagels", image: germaines_gator },
+  { lat: 29.6359013329591, lng: -82.33983966558394, category: "restaurant", title: "Momoyaki", image: restaurant_gator },
+  { lat: 29.650388203434332, lng: -82.37597347537441, category: "restaurant", title: "Las Carretas", image: restaurant_gator },
+  { lat: 29.623332841423434, lng: -82.37538518531986, category: "restaurant", title: "Red Rice Kitchen", image: restaurant_gator },
+  { lat: 29.758364743624703, lng: -82.39295973720803, category: "restaurant", title: "Koto", image: restaurant_gator },
+  { lat: 29.631838065754412, lng: -82.33962036997433, category: "restaurant", title: "La Tienda", image: restaurant_gator },
+  { lat: 29.638315853180988, lng: -82.3394904330465, category: "restaurant", title: "Indian Aroma", image: restaurant_gator },
+  { lat: 29.65197398083065, lng: -82.32519833304602, category: "restaurant", title: "Cry Babys", image: restaurant_gator },
+  { lat: 29.67442900410965, lng: -82.30188480420941, category: "restaurant", title: "Satchels", image: restaurant_gator },
+  { lat: 29.64827160463296, lng: -82.32877184838945, category: "restaurant", title: "Muneca’s Taco Garden", image: restaurant_gator },
+  { lat: 29.646546190047477, lng: -82.32472713991532, category: "restaurant", title: "Luke’s Bagels", image: restaurant_gator },
 
   { lat:29.65213764748871, lng:-82.33118911968197, category: "cafe", title: "Karma Cream", image: karmacream_gator },
-  { lat:29.650741676560994,lng:-82.32274468698614, category: "cafe", title: "Wyatt’s", image: karmacream_gator },
-  { lat:29.649753684225075, lng:-82.3233989122677, category: "cafe", title: "Maude’s Cafe", image: karmacream_gator },
-  { lat:29.653405373436907, lng: -82.34345787550077, category: "cafe", title: "Pascal’s Coffehouse", image: karmacream_gator },
-  { lat:29.6511672302776,  lng:-82.33219266323125, category: "cafe", title: "Opus Coffee - Innovation", image: karmacream_gator },
-  { lat:29.64866838546301,   lng:-82.3276436366712, category: "cafe", title: "Opus Coffee - Airstream", image: karmacream_gator },
-  { lat:29.64840730854492, lng:-82.33296513943957, category: "cafe", title: "Opus Coffee - The Row", image: karmacream_gator },
-  { lat:29.652607360673592,  lng:-82.34018758713849, category: "cafe", title: "Concord Coffee", image: karmacream_gator },
-  { lat:29.672012671010553, lng:-82.33063039759065, category: "cafe", title: "Curia On The Drag", image: karmacream_gator },
-  { lat:29.6515812409414, lng:-82.32686819870852, category: "cafe", title: "Cafe Voltaire", image: karmacream_gator },
-  { lat:29.626740910821987,  lng:-82.37466244955165, category: "cafe", title: "Foxtail Coffee Co.", image: karmacream_gator },
+  { lat:29.650741676560994,lng:-82.32274468698614, category: "cafe", title: "Wyatt’s", image: cafe_gator },
+  { lat:29.649753684225075, lng:-82.3233989122677, category: "cafe", title: "Maude’s Cafe", image: cafe_gator },
+  { lat:29.653405373436907, lng: -82.34345787550077, category: "cafe", title: "Pascal’s Coffehouse", image: cafe_gator },
+  { lat:29.6511672302776,  lng:-82.33219266323125, category: "cafe", title: "Opus Coffee - Innovation", image: cafe_gator },
+  { lat:29.64866838546301,   lng:-82.3276436366712, category: "cafe", title: "Opus Coffee - Airstream", image: cafe_gator },
+  { lat:29.64840730854492, lng:-82.33296513943957, category: "cafe", title: "Opus Coffee - The Row", image: cafe_gator },
+  { lat:29.652607360673592,  lng:-82.34018758713849, category: "cafe", title: "Concord Coffee", image: cafe_gator },
+  { lat:29.672012671010553, lng:-82.33063039759065, category: "cafe", title: "Curia On The Drag", image: cafe_gator },
+  { lat:29.6515812409414, lng:-82.32686819870852, category: "cafe", title: "Cafe Voltaire", image: cafe_gator },
+  { lat:29.626740910821987,  lng:-82.37466244955165, category: "cafe", title: "Foxtail Coffee Co.", image: cafe_gator },
 
   { lat: 29.644859192414923, lng: -82.32228393500337, category: "nature", title: "depot park", image: nature_gator },
   { lat: 29.655389621677706, lng:  -82.37101621796064, category: "nature", title: "loblolly woods", image: nature_gator },
@@ -95,7 +98,7 @@ const markers = [
   { lat: 29.651139, lng: -82.325297, category: "culture", title: "Hippodrome Theatre", image: culture_gator }
 ];
 
-const categories = ["all", "park", "restaurant", "museum", "cafe", "UF"];
+const categories = ["all", "nature", "restaurant", "culture", "cafe", "UF"];
 
 
 const ClientApp = () => {

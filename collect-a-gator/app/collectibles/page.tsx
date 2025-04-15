@@ -23,6 +23,10 @@ import karmacream_gator from "./../images/karmacream_gator.png"
 import marston_gator from "./../images/marston_gator.png"
 import culture_gator from "./../images/culture_gator.png"
 import nature_gator from "./../images/nature_gator.png"
+import uf_gator from "./../images/uf_gator.png"
+import restaurant_gator from "./../images/restaurant_gator.png"
+import cafe_gator from "./../images/cafe_gator.png"
+
 import { AlignVerticalCenter } from '@mui/icons-material';
 //import { StaticImageData } from 'next/image';
 
@@ -145,8 +149,8 @@ export default function CollectiblePage({
               <Grid item>
                 <Grid container direction="column" alignItems="center" justifyContent="center">
                 <img
-                  src={marston_gator.src}
-                  alt="Marston Gator"
+                  src={uf_gator.src}
+                  alt="uF Gator"
                   width={100}
                   height={135}
                   style={{
@@ -170,8 +174,8 @@ export default function CollectiblePage({
               <Grid item>
                 <Grid container direction="column" alignItems="center" justifyContent="center">
                 <img
-                  src={germaines_gator.src}
-                  alt="Germaines Gator"
+                  src={restaurant_gator.src}
+                  alt="Restaurant Gator"
                   width={100}
                   height={135}
                   style={{
@@ -196,7 +200,7 @@ export default function CollectiblePage({
               <Grid item>
                 <Grid container direction="column" alignItems="center" justifyContent="center">
                 <img
-                  src={karmacream_gator.src}
+                  src={cafe_gator.src}
                   alt="Cafe Gator"
                   width={100}
                   height={135}
