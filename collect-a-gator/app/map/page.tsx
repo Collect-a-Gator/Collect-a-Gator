@@ -1,6 +1,6 @@
-"use client";
-import React, { useEffect, useState, useRef } from 'react'
-import {AdvancedMarker, APIProvider, Pin, ControlPosition, Map, MapControl, useMapsLibrary, useMap, useAdvancedMarkerRef} from '@vis.gl/react-google-maps';
+"use client";;
+import { useState } from 'react';
+import { AdvancedMarker, APIProvider, Map } from '@vis.gl/react-google-maps';
 // import {
 //   PlaceOverview,
 //   SplitLayout,
@@ -12,7 +12,6 @@ import { SignedIn, SignedOut, RedirectToSignIn } from "@clerk/nextjs";
 import { ClerkProvider } from '@clerk/nextjs'
 import dynamic from "next/dynamic";
 import butterfly_gator from "./../images/butterfly_gator.png"
-import depot_gator from "./../images/depot_gator.png"
 import germaines_gator from "./../images/germaines_gator.png"
 import karmacream_gator from "./../images/karmacream_gator.png"
 import marston_gator from "./../images/marston_gator.png"
@@ -22,8 +21,6 @@ import uf_gator from "./../images/uf_gator.png"
 import restaurant_gator from "./../images/restaurant_gator.png"
 import cafe_gator from "./../images/cafe_gator.png"
 
-import { OverlayLayout as TOverlayLayout } from '@googlemaps/extended-component-library/overlay_layout.js';
-import { PlacePicker as TPlacePicker } from '@googlemaps/extended-component-library/place_picker.js';
 import { Button } from '@mui/material';
 
 import {CustomAdvancedMarker} from './custom-advanced-marker/custom-advanced-marker';

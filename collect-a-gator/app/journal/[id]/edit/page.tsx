@@ -1,12 +1,12 @@
 'use client';
 import { JournalEntry } from '@/components/models/models';
-import { Box, Button, Card, CardContent, CardHeader, Container, Grid, Paper, TextField, Typography } from '@mui/material';
+import { Box, Button, Container, Paper, TextField, Typography } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function EditPage() : React.ReactNode {

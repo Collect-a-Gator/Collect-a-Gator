@@ -3,18 +3,7 @@ import React, {useEffect, useState}  from 'react';
 import { useUser, ClerkProvider } from '@clerk/nextjs';
 import { SignedIn, SignedOut, RedirectToSignIn } from "@clerk/nextjs";
 
-import { 
-  Container, 
-  Typography, 
-  Grid, 
-  Card, 
-  CardContent, 
-  CardMedia,
-  Button,
-  Box,
-  CardHeader,
-  IconButton
-} from '@mui/material';
+import { Container, Typography, Grid, Card, CardContent, CardMedia, Button, Box } from '@mui/material';
 
 import {
   CalendarToday,
