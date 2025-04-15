@@ -24,6 +24,7 @@ import { PlacePicker as TPlacePicker } from '@googlemaps/extended-component-libr
 import { Button } from '@mui/material';
 
 import {CustomAdvancedMarker} from './custom-advanced-marker/custom-advanced-marker';
+import {PlaceDetails} from './types';
 
 //import all components from extended components library
 <script type="module" src="https://unpkg.com/@googlemaps/extended-component-library"></script>
@@ -106,6 +107,7 @@ const ClientApp = () => {
     // see individual elements: https://configure.mapsplatform.google/place-picker
     
     const googleApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
+  
 
     const position = { lat: 29.6520, lng: -82.3250 };
     return (
@@ -117,20 +119,31 @@ const ClientApp = () => {
           <div slot="main" style={{ width: "100vw", height: "100vh" }}>
                 <Map defaultCenter={position} defaultZoom={15} mapId="5174ed5358f23a3c">
                     {markers
-            .filter(
-              (marker) =>
-                selectedCategory === "all" || marker.category === selectedCategory
-            )
-            .map((marker, index) => (
-              <AdvancedMarker
-                key={index}
-                position={{ lat: marker.lat, lng: marker.lng }}
-                title={marker.title}
-                onClick={() => {setSelectedMarker({ lat: marker.lat, lng: marker.lng, image: marker.image });
-                
-              }}
-              />
-            ))}
+                        .filter(
+                          (marker) =>
+                            selectedCategory === "all" || marker.category === selectedCategory
+                        )
+                        .map((marker, index) => (
+
+                          <CustomAdvancedMarker 
+                              key={index}
+                              latitude={marker.lat}
+                              longitude={marker.lng}
+                              cat={marker.category}
+                              tit={marker.title}
+                              img={marker.image}
+                               />
+
+
+                      //     <AdvancedMarker
+                      //       key={index}
+                      //       position={{ lat: marker.lat, lng: marker.lng }}
+                      //       title={marker.title}
+                      //       onClick={() => {setSelectedMarker({ lat: marker.lat, lng: marker.lng, image: marker.image });
+                            
+                      //     }}
+                      // />
+                    ))}
             {/* display image when marker is clicked */}
             {selectedMarker && (
             <AdvancedMarker position={selectedMarker}>
@@ -142,7 +155,7 @@ const ClientApp = () => {
             </AdvancedMarker>
           )}
 
-                  <CustomAdvancedMarker />
+
                 </Map>
                 
           </div>

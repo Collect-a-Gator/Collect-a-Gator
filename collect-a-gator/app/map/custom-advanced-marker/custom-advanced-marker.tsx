@@ -1,6 +1,8 @@
 import React, {FunctionComponent, useState} from 'react';
 import {AdvancedMarker} from '@vis.gl/react-google-maps';
 import classNames from 'classnames';
+import {PlaceDetails} from '../types';
+import { StaticImageData } from "next/image";
 
 import {PlaceOverviewExpanded} from '../place-overview/place-overview-expanded';
 import {GatorIcon} from './gator-icon';
@@ -9,15 +11,23 @@ import './custom-advanced-marker.css'
 
 import marston_gator from "./../../images/marston_gator.png"
 
-export const CustomAdvancedMarker = ({
-}) => {
+interface Props {
+  placeDetails: PlaceDetails;
+}
+
+export const CustomAdvancedMarker = 
+({ key, latitude, longitude, cat, tit, img }: 
+  { key: number, latitude: number; longitude: number, cat: string, tit: string, img: StaticImageData }) => {
   const [clicked, setClicked] = useState(false);
   const [hovered, setHovered] = useState(false);
   const position = {
     //marston
-    lat: 29.64840833267358, 
-    lng: -82.34354772086701
+    lat: latitude, 
+    lng: longitude
   };
+  const category = cat;
+  const title = tit;
+  const image = img;
 
 //  CUSTOM PIN !!!
   const renderCustomPin = () => {
@@ -37,7 +47,7 @@ export const CustomAdvancedMarker = ({
               isExtended={clicked}
             /> */}
             <img
-                src={marston_gator.src}
+                src={image.src}
                 alt="Marker Gator"
                 style={{ width: "100px", height: "135px" }}
               />
