@@ -15,7 +15,7 @@ export default function entryPage() {
     const router = useRouter();
 
     useEffect(() => {
-        const call = async () => await fetch(`http://${NEXT_PUBLIC_API_URL}/api/entries/${entryId}`)
+        const call = async () => await fetch("${NEXT_PUBLIC_API_URL}/api/entries/${entryId}")
             .then(response => response.json())
             .then(json => setEntry(json))
             .catch(error => console.error(error));

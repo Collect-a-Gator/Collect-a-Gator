@@ -24,7 +24,7 @@ export default function EditPage() : React.ReactNode {
     };
 
     useEffect(() => {
-        const call = async () => await fetch(`http://${NEXT_PUBLIC_API_URL}/api/entries/${entryId}`)
+        const call = async () => await fetch("${NEXT_PUBLIC_API_URL}/api/entries/${entryId}")
             .then(response => response.json())
             .then(json => {
                 setEntry(json);
@@ -38,7 +38,7 @@ export default function EditPage() : React.ReactNode {
 
     const updateData = async () => {
         const fetchData = async () => {
-            const response = await fetch(`http://${NEXT_PUBLIC_API_URL}/api/entries/${entryId}`, {
+            const response = await fetch("${NEXT_PUBLIC_API_URL}/api/entries/${entryId}", {
                 method: "PUT",
                 body: JSON.stringify({
                     title: title,
