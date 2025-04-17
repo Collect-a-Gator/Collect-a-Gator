@@ -11,9 +11,8 @@ services:
     env_file:
       - ./collect-a-gator/.env.frontend
     environment:
-      - PORT=80
       - HOSTNAME=0.0.0.0
-      - NEXT_PUBLIC_API_URL=http://backend:5050
+      - NEXT_PUBLIC_API_URL=http://backend:5051
     depends_on:
       - backend
 
@@ -28,5 +27,3 @@ services:
       - /app/node_modules
     env_file:
       - ./collect-a-gator/.env.backend
-    environment:
-      - PORT=5051
