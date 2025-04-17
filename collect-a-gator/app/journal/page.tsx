@@ -37,7 +37,7 @@ export default function JournalPage({
       try {
         // Sync user information when they log in
         if (userId) {
-          await fetch("${NEXT_PUBLIC_API_URL}/api/users", {  
+          await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`, {  
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -50,7 +50,7 @@ export default function JournalPage({
         }
   
         // Fetch journal entries for the logged-in user
-        const response = await fetch("${NEXT_PUBLIC_API_URL}/api/entries");
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/entries`);
         const json = await response.json();
   
         if (userId) {
