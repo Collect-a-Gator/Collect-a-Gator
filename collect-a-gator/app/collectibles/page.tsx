@@ -32,7 +32,8 @@ export default function CollectiblePage({
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch(`http://localhost:5050/api/users/${userId}`);
+            // UPDATED WITH BACKEND ENV VAR
+            const response = await fetch(`http://${NEXT_PUBLIC_API_URL}/api/users/${userId}`);
             const json = await response.json();
             console.log("json: ", json);
 
