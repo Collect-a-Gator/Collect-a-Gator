@@ -1,6 +1,7 @@
 import './place-overview.css';
 import dynamic from "next/dynamic";
-import {APIProvider} from '@vis.gl/react-google-maps';
+import {APIProvider, useMapsLibrary} from '@vis.gl/react-google-maps';
+import { useEffect, useState } from 'react';
 
 
     const PlaceOverview = dynamic(
@@ -12,54 +13,58 @@ import {APIProvider} from '@vis.gl/react-google-maps';
         { ssr: false }
     );
 
-    function geocodeLatLng(
-      geocoder: google.maps.Geocoder,
-      latitude: number,
-      longitude: number
-    ): string {
-
-      const latlng = {
-        lat: latitude,
-        lng: longitude,
-      };
+    function ReverseGeocoder(lat: number, lng: number) {
+      const [placeId, setPlaceId] = useState<string | null>(null);
+      const geocodingLib = useMapsLibrary('geocoding');
     
-      geocoder
-        .geocode({ location: latlng })
-        .then((response) => {
-          if (response.results[0]) {
-            return((response.results[0].place_id));
+      useEffect(() => {
+        if (!geocodingLib) return;
+    
+        const geocoder = new google.maps.Geocoder();
+        const latLng = { lat, lng };
+    
+        geocoder.geocode({ location: latLng }, (results, status) => {
+          if (status === 'OK' && results && results.length > 0) {
+            setPlaceId(results[0].place_id);
           } else {
-            
-            window.alert("No results found");
+            console.error('Geocoder failed:', status);
           }
-        })
-        .catch((e) => window.alert("Geocoder failed due to: " + e));
-        return("No results found");
-    }
+        });
+      }, [geocodingLib, lat, lng]);
     
+      return placeId;
+    }
+
+    function usePlaceId(lat: number, lng: number) : string {
+
+      const placeIdResult: string | null = ReverseGeocoder(lat, lng);
+
+      if (placeIdResult !== null) {
+        return placeIdResult;
+      }
+
+      return "good luck";
+    }
 
 export const PlaceOverviewExpanded= 
 ({ latitude, longitude }: 
   { latitude: number; longitude: number }) => {
 
-  const latlng = {
-    lat: latitude,
-    lng: longitude,
-  };
+
   const geocoder = new google.maps.Geocoder();
-  var foundPlaceID: string = geocodeLatLng(geocoder, latitude, longitude);
+  const placeId: string = usePlaceId(latitude, longitude);
+
   const googleApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
   
   return (
     <div className="details-container">
 
       <APIProvider apiKey={googleApiKey}>
- 
-      <div> YOOOOOOOOOO {foundPlaceID} </div>
-      <PlaceOverview
+
+       <PlaceOverview
                   size="large"
                   //hardcode place id as a string
-                  place={foundPlaceID}
+                  place={placeId}
                   googleLogoAlreadyDisplayed
                 >
                   <div slot="action" className="SlotDiv">
