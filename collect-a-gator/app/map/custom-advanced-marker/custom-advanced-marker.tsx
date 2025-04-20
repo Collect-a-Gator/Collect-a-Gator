@@ -5,7 +5,13 @@ import {PlaceDetails} from '../types';
 import { StaticImageData } from "next/image";
 
 import {PlaceOverviewExpanded} from '../place-overview/place-overview-expanded';
-import {GatorIcon} from './gator-icon';
+import ufIcon from "./category-icons/book-heart.svg";
+import cafeIcon from "./category-icons/coffee.svg";
+import cultureIcon from "./category-icons/palette.svg";
+import parksIcon from "./category-icons/trees.svg";
+import restaurantIcon from "./category-icons/utensils.svg";
+
+
 
 import './custom-advanced-marker.css'
 
@@ -34,6 +40,20 @@ export const CustomAdvancedMarker =
 
     const [selectedMarker, setSelectedMarker] =
     useState<google.maps.marker.AdvancedMarkerElement | null>(null);
+
+    let imageSrc;
+
+    if (cat == "restaurant") {
+      imageSrc = restaurantIcon.src;
+    } else if (cat == "UF") {
+      imageSrc = ufIcon.src;
+    } else if (cat == "cafe"){
+      imageSrc = cafeIcon.src;
+    } else if (cat == "culture"){
+      imageSrc = cultureIcon.src;
+    } else if (cat == "nature"){
+      imageSrc = parksIcon.src;
+    }
     
     return (
       <>
@@ -46,19 +66,26 @@ export const CustomAdvancedMarker =
             {/* <RealEstateGallery
               isExtended={clicked}
             /> */}
+            <span className="icon">
             <img
+                src={imageSrc}
+              />
+            </span>
+
+            <span className="collectible">
+              <img
                 src={image.src}
                 alt="Marker Gator"
                 style={{ width: "100px", height: "135px" }}
               />
-
-            <span className="icon">
-              <GatorIcon />
             </span>
+            
 
           </div>            
 
-          <PlaceOverviewExpanded />
+          <PlaceOverviewExpanded 
+          latitude={position.lat}
+          longitude={position.lng}/>
         </div>
         
 

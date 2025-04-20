@@ -1,5 +1,7 @@
 import './place-overview.css';
 import dynamic from "next/dynamic";
+import {APIProvider} from '@vis.gl/react-google-maps';
+
 
     const PlaceOverview = dynamic(
         () => import('@googlemaps/extended-component-library/react').then(mod => mod.PlaceOverview),
@@ -10,16 +12,54 @@ import dynamic from "next/dynamic";
         { ssr: false }
     );
 
-export const PlaceOverviewExpanded= ({
-  
-}) => {
+    function geocodeLatLng(
+      geocoder: google.maps.Geocoder,
+      latitude: number,
+      longitude: number
+    ): string {
+
+      const latlng = {
+        lat: latitude,
+        lng: longitude,
+      };
+    
+      geocoder
+        .geocode({ location: latlng })
+        .then((response) => {
+          if (response.results[0]) {
+            return((response.results[0].place_id));
+          } else {
+            
+            window.alert("No results found");
+          }
+        })
+        .catch((e) => window.alert("Geocoder failed due to: " + e));
+        return("No results found");
+    }
+    
+
+export const PlaceOverviewExpanded= 
+({ latitude, longitude }: 
+  { latitude: number; longitude: number }) => {
+
+  const latlng = {
+    lat: latitude,
+    lng: longitude,
+  };
+  const geocoder = new google.maps.Geocoder();
+  var foundPlaceID: string = geocodeLatLng(geocoder, latitude, longitude);
+  const googleApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
   
   return (
     <div className="details-container">
+
+      <APIProvider apiKey={googleApiKey}>
+ 
+      <div> YOOOOOOOOOO {foundPlaceID} </div>
       <PlaceOverview
                   size="large"
                   //hardcode place id as a string
-                  place={'ChIJd71aR52j6IgRHko1BL93Tag'}
+                  place={foundPlaceID}
                   googleLogoAlreadyDisplayed
                 >
                   <div slot="action" className="SlotDiv">
@@ -28,6 +68,8 @@ export const PlaceOverviewExpanded= ({
                     </PlaceDirectionsButton>
                   </div>
         </PlaceOverview>
+
+        </APIProvider>
     </div>
   );
 };
