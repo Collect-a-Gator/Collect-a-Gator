@@ -6,4 +6,5 @@ export interface PlaceDetails {
     category: string;
     title: string;
     image: StaticImageData; 
+    placeid: string;
   }

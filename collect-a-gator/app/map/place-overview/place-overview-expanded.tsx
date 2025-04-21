@@ -13,46 +13,47 @@ import { useEffect, useState } from 'react';
         { ssr: false }
     );
 
-    function ReverseGeocoder(lat: number, lng: number) {
-      const [placeId, setPlaceId] = useState<string | null>(null);
-      const geocodingLib = useMapsLibrary('geocoding');
+    // !!! working functions to find PlaceID from lat and long, but inaccurate bc coordinates != actual place ID
+    // function ReverseGeocoder(lat: number, lng: number) {
+    //   const [placeId, setPlaceId] = useState<string | null>(null);
+    //   const geocodingLib = useMapsLibrary('geocoding');
     
-      useEffect(() => {
-        if (!geocodingLib) return;
+    //   useEffect(() => {
+    //     if (!geocodingLib) return;
     
-        const geocoder = new google.maps.Geocoder();
-        const latLng = { lat, lng };
+    //     const geocoder = new google.maps.Geocoder();
+    //     const latLng = { lat, lng };
     
-        geocoder.geocode({ location: latLng }, (results, status) => {
-          if (status === 'OK' && results && results.length > 0) {
-            setPlaceId(results[0].place_id);
-          } else {
-            console.error('Geocoder failed:', status);
-          }
-        });
-      }, [geocodingLib, lat, lng]);
+    //     geocoder.geocode({ location: latLng }, (results, status) => {
+    //       if (status === 'OK' && results && results.length > 0) {
+    //         setPlaceId(results[0].place_id);
+    //       } else {
+    //         console.error('Geocoder failed:', status);
+    //       }
+    //     });
+    //   }, [geocodingLib, lat, lng]);
     
-      return placeId;
-    }
+    //   return placeId;
+    // }
 
-    function usePlaceId(lat: number, lng: number) : string {
+    // function usePlaceId(lat: number, lng: number) : string {
 
-      const placeIdResult: string | null = ReverseGeocoder(lat, lng);
+    //   const placeIdResult: string | null = ReverseGeocoder(lat, lng);
 
-      if (placeIdResult !== null) {
-        return placeIdResult;
-      }
+    //   if (placeIdResult !== null) {
+    //     return placeIdResult;
+    //   }
 
-      return "good luck";
-    }
+    //   return "good luck";
+    // }
 
 export const PlaceOverviewExpanded= 
-({ latitude, longitude }: 
-  { latitude: number; longitude: number }) => {
+({ latitude, longitude, placeId }: 
+  { latitude: number; longitude: number, placeId: string }) => {
 
 
   const geocoder = new google.maps.Geocoder();
-  const placeId: string = usePlaceId(latitude, longitude);
+  // const placeId: string = usePlaceId(latitude, longitude);
 
   const googleApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
   

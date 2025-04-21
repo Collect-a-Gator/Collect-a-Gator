@@ -132,7 +132,8 @@
     border-radius: 0;
     width: fit-content;
     max-width: 650px;
-    height: 317px;
+    /* height: 317px; */
+    height: fit-content;
   }
   
   

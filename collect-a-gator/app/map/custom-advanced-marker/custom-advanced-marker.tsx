@@ -22,8 +22,8 @@ interface Props {
 }
 
 export const CustomAdvancedMarker = 
-({ key, latitude, longitude, cat, tit, img }: 
-  { key: number, latitude: number; longitude: number, cat: string, tit: string, img: StaticImageData }) => {
+({ key, latitude, longitude, cat, tit, img, id }: 
+  { key: number, latitude: number; longitude: number, cat: string, tit: string, img: StaticImageData, id: string }) => {
   const [clicked, setClicked] = useState(false);
   const [hovered, setHovered] = useState(false);
   const position = {
@@ -79,13 +79,15 @@ export const CustomAdvancedMarker =
                 style={{ width: "100px", height: "135px" }}
               />
             </span>
-            
+          </div>           
 
-          </div>            
-
-          <PlaceOverviewExpanded 
-          latitude={position.lat}
-          longitude={position.lng}/>
+          <div className="details-container">
+            <PlaceOverviewExpanded 
+            latitude={position.lat}
+            longitude={position.lng}
+            placeId={id}/> 
+          </div>
+    
         </div>
         
 
