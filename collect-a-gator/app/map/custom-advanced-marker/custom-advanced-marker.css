@@ -66,13 +66,21 @@
     justify-content: center;
     align-items: center;
     transition: opacity 0.2s ease-in-out;
+    
   }
   
   .custom-pin .image-container .icon {
+    background-color: darkgreen;
     position: absolute;
     opacity: 1;
     transition: opacity 0.2s ease-in-out;
   }
+
+  /* added */
+  .custom-pin .image-container .collectible {
+    opacity: 0;
+  }
+  
   
   .real-estate-marker.hovered {
     z-index: 2;
@@ -100,6 +108,14 @@
     .icon {
     opacity: 0;
   }
+
+  /* added */
+  .real-estate-marker.hovered
+  .custom-pin
+  .image-container
+  .collectible {
+  opacity: 1;
+}
   
   .real-estate-marker.hovered .tip {
     transform: translateY(23%) translateX(-50%) rotate(45deg) scale(1.4);
@@ -116,7 +132,8 @@
     border-radius: 0;
     width: fit-content;
     max-width: 650px;
-    height: 317px;
+    /* height: 317px; */
+    height: fit-content;
   }
   
   
@@ -133,6 +150,14 @@
     .icon {
     opacity: 0;
     visibility: hidden;
+  }
+
+  /* added */
+    .real-estate-marker.clicked
+    .custom-pin
+    .image-container
+    .collectible {
+    opacity: 1;
   }
   
   
