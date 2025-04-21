@@ -19,7 +19,7 @@ Collect-A-Gator helps UF students discover notable locations around Gainesville 
 
 1. Clone the repository
    
-   git clone https://github.com/karentong14/Collect-A-Gator.git
+   git clone https://github.com/Collect-a-Gator/Collect-a-Gator
    
 
 2. Navigate to the project directory

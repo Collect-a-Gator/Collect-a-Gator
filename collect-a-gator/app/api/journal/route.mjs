@@ -1,6 +1,4 @@
 import express from "express";
-//import db from "../../backend/db/conn.mjs";
-import { ObjectId, ReturnDocument } from "mongodb";
 import {Entry} from "../../backend/models/entry.schema.mjs";
 const router = express.Router();
 
@@ -65,6 +63,18 @@ router.delete("/:id", async (req, res) => {
   } catch (error) {
     res.status(400).send({ error: "Invalid ID format" });
   }
+});
+
+router.put('/:id', async (req, res) => {
+      try {
+        const result = await Entry.findByIdAndUpdate(req.params.id, 
+          { title: req.body.title, content: req.body.content, date: req.body.date, location: req.body.location}
+        );
+        if (!result) return res.status(404).send("Not found");
+        res.status(200).send(result);
+      } catch (error) {
+        res.status(400).send({ error: "Invalid ID format" });
+      }
 });
 
 export default router;

@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const GatorIcon = () => (
   <svg
     width="30"

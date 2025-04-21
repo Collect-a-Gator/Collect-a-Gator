@@ -1,0 +1,29 @@
+services:
+  frontend:
+    build:
+      context: ./collect-a-gator
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "80:3000"
+    volumes:
+      - ./collect-a-gator:/app
+      - /app/node_modules
+    env_file:
+      - ./collect-a-gator/.env.frontend
+    environment:
+      - HOSTNAME=0.0.0.0
+      - NEXT_PUBLIC_API_URL=http://74.249.99.214:5051
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./collect-a-gator
+      dockerfile: Dockerfile.backend
+    ports:
+      - "5051:5050"
+    volumes:
+      - ./collect-a-gator:/app
+      - /app/node_modules
+    env_file:
+      - ./collect-a-gator/.env.backend

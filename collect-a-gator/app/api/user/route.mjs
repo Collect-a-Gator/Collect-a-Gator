@@ -1,7 +1,6 @@
 import express from "express";
 import db from "../../backend/db/conn.mjs";
 import { User } from "../../backend/models/user.schema.mjs";
-import { MongoMissingCredentialsError } from "mongodb";
 
 const router = express.Router();
 
@@ -107,4 +106,4 @@ router.delete("/:token", async (req, res) => {
   }
 });
 
- export default router;
+export default router;

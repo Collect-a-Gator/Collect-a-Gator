@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useState} from 'react';
+import { useState } from 'react';
 import {AdvancedMarker} from '@vis.gl/react-google-maps';
 import classNames from 'classnames';
 import {PlaceDetails} from '../types';

@@ -1,0 +1,18 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+# Explicitly set Next.js to use port 3000
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
+
+# Use a more reliable command that specifies the port and hostname
+CMD ["sh", "-c", "npm run dev -- -p 3000 -H 0.0.0.0"]

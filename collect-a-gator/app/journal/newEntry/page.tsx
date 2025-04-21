@@ -1,20 +1,14 @@
 'use client';
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
-import { 
-    Card, 
-    CardHeader, 
-    Grid,
-    IconButton,
-    Button
-} from '@mui/material';
+import { Card, Grid, Button, Box, Typography } from '@mui/material';
 
 import { TextField } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useEffect, useRef, useState } from 'react';
-import {AdvancedMarker, APIProvider, ControlPosition, Map, MapControl, useMapsLibrary, useMap, useAdvancedMarkerRef} from '@vis.gl/react-google-maps';
+import { APIProvider, useMapsLibrary } from '@vis.gl/react-google-maps';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 
@@ -54,6 +48,16 @@ export default function EntryPage({
         }
     };
 
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (!e.currentTarget.checkValidity()) {
+        e.stopPropagation();
+        return;
+      }
+      submitEntry();
+      goToEntry();
+    };
+
     const isFirstRender = useRef(true);
     const googleApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
 
@@ -64,7 +68,7 @@ export default function EntryPage({
         else {
           
             const fetchData = async () => {
-              const response = await fetch("http://localhost:5050/api/entries", {
+              const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/entries`, {
                   method: "POST",
                   body: JSON.stringify({
                       title: title,
@@ -87,7 +91,7 @@ export default function EntryPage({
 
               const getUserData = async () => {
                 try {
-                    const response = await fetch("http://localhost:5050/api/users/" + user?.id, {
+                    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/` + user?.id, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json; charset=UTF-8"
@@ -132,7 +136,7 @@ export default function EntryPage({
 
               try {
               console.log("Updated counters before PUT request:", counters);
-              await fetch(`http://localhost:5050/api/users/` + user?.id, {
+              await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/` + user?.id, {
                 method: "PUT",
                 body: JSON.stringify({
                 counters: {
@@ -172,7 +176,7 @@ export default function EntryPage({
                 }
 
                 try {
-                await fetch(`http://localhost:5050/api/users/` + user?.id, {
+                await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/` + user?.id, {
                   method: "PUT",
                   body: JSON.stringify({
                   booleans: {
@@ -213,46 +217,84 @@ export default function EntryPage({
                 justifyContent: 'center',
                 alignItems: 'center'
             }}>
-                <Grid item xs={12} sm={10} md={8}>
-                    <Card>
-                        <CardHeader title={"Enter your new journal entry!"}></CardHeader>
-                    </Card>
-                </Grid>
-                <Grid item xs={12} sm={10} md={8}>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DatePicker defaultValue={date} format="YYYY-MM-DD" onChange={handleDateChange}/>
-                    </LocalizationProvider>
-                </Grid>
-                <Grid item xs={12} sm={10} md={8}>
-                    <TextField placeholder="Enter a title name..." onChange={(e) => setTitle(e.target.value)}></TextField>
-                </Grid>
-                <Grid item xs={12} sm={10} md={8}>
-                    <TextField placeholder="Type anything…" onChange={(e) => setContent(e.target.value)}></TextField>
-                </Grid>
-                <Grid item xs={12} sm={10} md={8}>
-                    <Grid container spacing={2}>
-                        <Grid item>
-                            <Button variant="contained" onClick={() => {
-                              submitEntry();
-                              goToEntry();
-                            }}>Submit</Button>
-                        </Grid>
-                        <Grid item>
-                            <Button variant="contained" color="error">Remove</Button>
-                        </Grid>
+                <Box
+                  component="form"
+                  onSubmit={handleSubmit}
+                  sx={{ display: "flex", flexDirection: "column", alignItems: "center", p: 2 }}
+                >
+                  <Grid container spacing={4} justifyContent="center" maxWidth="md" paddingTop="10px">
+                    <Grid item xs={12}>
+                      <Typography variant="h2">Enter Your New Journal Entry!</Typography>
                     </Grid>
-                </Grid>
 
-                <APIProvider apiKey={googleApiKey}>
-                
-                          {/* //ADDED TEENY TINY SEARCH BAR */}
-                          {/* <MapControl position={ControlPosition.TOP}> */}
-                            <div style={{ fontSize: '30px', color: 'black' }} className="autocomplete-control">
-                              <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
-                            </div>
-                          {/* </MapControl> */}
-                
-                </APIProvider>
+                    <Grid item xs={12}>
+                      <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DatePicker
+                          label="Entry Date"
+                          defaultValue={date}
+                          format="YYYY-MM-DD"
+                          onChange={handleDateChange}
+                          slotProps={{ textField: { fullWidth: true } }}
+                        />
+                      </LocalizationProvider>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                      <TextField
+                        required
+                        fullWidth
+                        label="Title"
+                        placeholder="Enter a title..."
+                        onChange={(e) => setTitle(e.target.value)}
+                      />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                      <TextField
+                        required
+                        fullWidth
+                        multiline
+                        minRows={5}
+                        label="Content"
+                        placeholder="Write your journal entry..."
+                        onChange={(e) => setContent(e.target.value)}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <APIProvider apiKey={googleApiKey}>
+                        <Box
+                          sx={{
+                            width: '100%',
+                            '& input': {
+                              width: '100%',
+                              padding: '16.5px 14px',
+                              borderRadius: '4px',
+                              border: '1px solid #ccc',
+                              fontSize: '1rem',
+                              fontFamily: 'Roboto, sans-serif',
+                            }
+                          }}
+                        >
+                          <PlaceAutocomplete onPlaceSelect={setSelectedPlace}/>
+                        </Box>
+                      </APIProvider>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Grid container spacing={2} justifyContent="center">
+                        <Grid item>
+                          <Button type="submit" variant="contained">
+                            Submit
+                          </Button>
+                        </Grid>
+                        <Grid item>
+                          <Button type="reset" variant="contained" color="info">
+                            Reset
+                          </Button>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Box>
             </Grid>
         </Card>
     );
