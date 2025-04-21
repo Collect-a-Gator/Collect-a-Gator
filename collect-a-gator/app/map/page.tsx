@@ -47,8 +47,6 @@ const markers1 = [
   { lat: 29.650388203434332, lng: -82.37597347537441, category: "restaurant", title: "Las Carretas", image: restaurant_gator, id: "ChIJcX6NVGCj6IgRdlAyMcGLNec" },
   { lat: 29.623332841423434, lng: -82.37538518531986, category: "restaurant", title: "Red Rice Kitchen", image: restaurant_gator, id: "ChIJ4x5rF9Kj6IgR2TfWxa9yYJQ" },
   { lat: 29.758364743624703, lng: -82.39295973720803, category: "restaurant", title: "Koto", image: restaurant_gator, id: "ChIJh0SCBIqj6IgREMeJkYwseg4" },
-  { lat: 29.631838065754412, lng: -82.33962036997433, category: "restaurant", title: "La Tienda", image: restaurant_gator, id: "ChIJabeoVaGj6IgRW-3TgvRlGYg" },
-  { lat: 29.638217939347168, lng: -82.33876087122115, category: "restaurant", title: "Indian Aroma", image: restaurant_gator, id: "ChIJxav7fgWj6IgR-g8xGWTUUkw" },
   { lat: 29.65197398083065, lng: -82.32519833304602, category: "restaurant", title: "Cry Babys", image: restaurant_gator, id: "ChIJC2p8EbKj6IgRKUUx8t8-8L0" },
   { lat: 29.67442900410965, lng: -82.30188480420941, category: "restaurant", title: "Satchels", image: restaurant_gator, id: "ChIJ0eY99h2k6IgRILAjo-PIX0U" },
 
@@ -73,14 +71,14 @@ const markers1 = [
   { lat: 29.657750, lng: -82.323600, category: "culture", title: "A. Quinn Jones Museum and Cultural Center", image: culture_gator, id: "ChIJ05pRW2yj6IgRjcpeXaq3yA8" },
   { lat: 29.657291, lng: -82.321818, category: "culture", title: "Wilhelmina Johnson Resource Center", image: culture_gator, id: "ChIJ9QUvBoaj6IgR1PX_eh9mF5M" },
   { lat: 29.651088, lng: -82.325480, category: "culture", title: "Civic Media Center", image: culture_gator, id: "ChIJs1C1o5Kj6IgRpOftpLlXVxE" },
+  { lat:29.65213764748871, lng:-82.33118911968197, category: "cafe", title: "Karma Cream", image: karmacream_gator, id: "ChIJU66uvIWj6IgR_T3rKgn_tGY" },
+
 ];
 
 const markers2 = [
-  { lat: 29.63578942873824,  lng: -82.33947488408285, category: "restaurant", title: "Momoyaki", image: restaurant_gator, id: "ChIJSzMhnySj6IgRC8Io5CIREWY" },
   { lat:29.64840730854492, lng:-82.33296513943957, category: "cafe", title: "Opus Coffee - The Row", image: cafe_gator, id: "ChIJi5XRv-6j6IgRPGVVy8qc4xQ" },
   { lat: 29.648556, lng: -82.325473, category: "culture", title: "Heartwood Soundstage", image: culture_gator, id: "ChIJwcIl25Kj6IgRmhvuFDY2jig" },
   { lat: 29.651139, lng: -82.325297, category: "culture", title: "Hippodrome Theatre", image: culture_gator, id: "ChIJTfruNo2j6IgRVxCVkN7eI0k" },
-  { lat: 29.639707, lng: -82.322909, category: "culture", title: "Cade Museum for Creativity and Invention", image: culture_gator, id: "ChIJCxgEbpOj6IgRX2GBPVg5Xik" },
   { lat: 29.64435966681451, lng: -82.36244691895224, category: "UF", title: "UF Bat Houses", image: uf_gator, id: "ChIJn18R4Guj6IgRuMZobqHdvy8" },
   { lat: 29.64913455443091, lng: -82.34502161800916, category: "UF", title: "SweetBerries Eatery and Frozen Custard", image: uf_gator, id: "ChIJOYPqxoaj6IgRoBCY9Zz4x7M"},
 
@@ -113,6 +111,10 @@ const markers4 = [
   { lat: 29.646546190047477, lng: -82.32472713991532, category: "restaurant", title: "Luke’s Bagels", image: restaurant_gator, id: "ChIJMe3peL6j6IgRUTeILkOipRI" },
   { lat: 29.644859192414923, lng: -82.32228393500337, category: "nature", title: "depot park", image: nature_gator, id: "ChIJ_aHU15Kj6IgROdcp7P7ZODI" },
   { lat: 29.643633, lng: -82.345978, category: "culture", title: "Harn Museum of Art", image: culture_gator, id: "ChIJV1saDj-j6IgRCzNOsYSBymw" },
+  { lat: 29.639707, lng: -82.322909, category: "culture", title: "Cade Museum for Creativity and Invention", image: culture_gator, id: "ChIJCxgEbpOj6IgRX2GBPVg5Xik" },
+  { lat: 29.638217939347168, lng: -82.33876087122115, category: "restaurant", title: "Indian Aroma", image: restaurant_gator, id: "ChIJxav7fgWj6IgR-g8xGWTUUkw" },
+  { lat: 29.63578942873824,  lng: -82.33947488408285, category: "restaurant", title: "Momoyaki", image: restaurant_gator, id: "ChIJSzMhnySj6IgRC8Io5CIREWY" },
+  { lat: 29.631838065754412, lng: -82.33962036997433, category: "restaurant", title: "La Tienda", image: restaurant_gator, id: "ChIJabeoVaGj6IgRW-3TgvRlGYg" },
 
 ];
 
@@ -226,7 +228,7 @@ const ClientApp = () => {
           <div
           style={{
             position: "absolute",
-            top: 10,
+            top: 50,
             left: "50%",
             transform: "translateX(-50%)",
             display: "flex",
@@ -246,9 +248,17 @@ const ClientApp = () => {
                 border: "none",
                 cursor: "pointer",
                 background: selectedCategory === cat ? "#ab86fc" : "#ddd",
+                //                                    (cat === "restaurant" && cat) ? "#e6ba1e" :  
+                //                                   (cat === "UF" && cat)         ? "#ff7f36" :    
+                //                                   (cat === "nature" && cat)     ? "#247824" : 
+                //                                   (cat === "culture" && cat)    ? "#8866d1" :
+                //                                   (cat ==="cafe" && cat)      ? "#855b31" :        
+                //                                                               "#ddd", 
                 color: selectedCategory === cat ? "#fff" : "#000",
               }}
             >
+
+              
               {cat}
             </Button>
           ))}

@@ -16,6 +16,8 @@ import restaurantIcon from "./category-icons/utensils.svg";
 import './custom-advanced-marker.css'
 
 import marston_gator from "./../../images/marston_gator.png"
+import { green } from '@mui/material/colors';
+import { colors } from '@mui/material';
 
 interface Props {
   placeDetails: PlaceDetails;
@@ -57,8 +59,20 @@ export const CustomAdvancedMarker =
     
     return (
       <>
-        <div className="custom-pin">
-          <button className="close-button">
+        <div className="custom-pin" style={{ backgroundColor: cat === "restaurant" ? "#e6ba1e" :
+                                              cat === "UF"         ? "#ff7f36" :
+                                              cat === "nature"     ? "#247824" :
+                                              cat === "culture"    ? "#8866d1" :
+                                              cat === "cafe"       ? "#855b31" :
+                                                                    "darkgreen" }}>
+
+
+          <button className="close-button" style={{ color: cat === "restaurant" ? "#e6ba1e" :
+                                                            cat === "UF"         ? "#ff7f36" :
+                                                            cat === "nature"     ? "#247824" :
+                                                            cat === "culture"    ? "#8866d1" :
+                                                            cat === "cafe"       ? "#855b31" :
+                                                                                  "darkgreen" }}>
             <span className="material-symbols-outlined"> close </span>
           </button>
 
@@ -66,7 +80,12 @@ export const CustomAdvancedMarker =
             {/* <RealEstateGallery
               isExtended={clicked}
             /> */}
-            <span className="icon">
+            <span className="icon" style={{ backgroundColor: cat === "restaurant" ? "#e6ba1e" :
+                                              cat === "UF"         ? "#ff7f36" :
+                                              cat === "nature"     ? "#247824" :
+                                              cat === "culture"    ? "#8866d1" :
+                                              cat === "cafe"       ? "#855b31" :
+                                                                    "darkgreen" }}>
             <img
                 src={imageSrc}
               />
@@ -89,9 +108,14 @@ export const CustomAdvancedMarker =
           </div>
     
         </div>
-        
 
-        <div className="tip" />
+        <div className="tip"  style={{ color: cat === "restaurant" ? "#e6ba1e" :
+                                              cat === "UF"         ? "#ff7f36" :
+                                              cat === "nature"     ? "#247824" :
+                                              cat === "culture"    ? "#8866d1" :
+                                              cat === "cafe"       ? "#855b31" :
+                                                                    "darkgreen" }}
+        />
       </>
       
     );
