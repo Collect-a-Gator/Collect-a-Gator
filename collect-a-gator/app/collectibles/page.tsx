@@ -33,7 +33,7 @@ export default function CollectiblePage({
         const fetchData = async () => {
           try {
             // UPDATED WITH BACKEND ENV VAR
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}`);
+            const response = await fetch(`http://localhost:5050/api/users/${userId}`);
             const json = await response.json();
             console.log("json: ", json);
 
