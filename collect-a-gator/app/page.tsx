@@ -54,7 +54,7 @@ export default function RootLayout() {
     { label: "View your profile", target: "/profile", icon: <AccountCircle/> },
   ];
   
-
+  const googleApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
   return (
     <>
       {isLoaded && isSignedIn && hydrated ? <>
@@ -124,7 +124,7 @@ export default function RootLayout() {
                   minHeight: '200px',
                 }}>
                   <CardMedia component="img"
-                    image="https://placehold.co/600x150/orange/white">
+                    image={`https://maps.googleapis.com/maps/api/staticmap?center=29.6485549,-82.3461353&zoom=14&size=600x400&maptype=roadmap&markers=color:red%7C29.6485549,-82.3461353&key=${googleApiKey}`}>
                   </CardMedia>
                 </Card>
               </Grid>
