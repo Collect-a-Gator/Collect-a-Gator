@@ -15,15 +15,19 @@ import restaurantIcon from "./category-icons/utensils.svg";
 
 import './custom-advanced-marker.css'
 
+import marston_gator from "./../../images/marston_gator.png"
+import { green } from '@mui/material/colors';
+import { colors } from '@mui/material';
 
-export const CustomAdvancedMarker = 
-({ latitude, longitude, cat, tit, img, placeid }: 
-  { latitude: number; longitude: number, cat: string, tit: string, img: StaticImageData, placeid: string }) => {
+interface Props {
+  placeDetails: PlaceDetails;
+}
+
+export const CustomAdvancedMarkerCopy = 
+({ key, latitude, longitude, cat, tit, img, id }: 
+  { key: number, latitude: number; longitude: number, cat: string, tit: string, img: StaticImageData, id: string }) => {
   const [clicked, setClicked] = useState(false);
   const [hovered, setHovered] = useState(false);
-
-  const [selectedMarker, setSelectedMarker] = useState<PlaceDetails | null>(null);
-
   const position = {
     //marston
     lat: latitude, 
@@ -32,15 +36,19 @@ export const CustomAdvancedMarker =
   const category = cat;
   const title = tit;
   const image = img;
+  const mykey = key;
 
 //  CUSTOM PIN !!!
   const renderCustomPin = () => {
 
     const [selectedMarker, setSelectedMarker] =
     useState<google.maps.marker.AdvancedMarkerElement | null>(null);
-    // const [selectedMarker, setSelectedMarker] = useState<{ lat: number; lng: number; image: any } | null>(null);
 
     let imageSrc;
+
+    if (mykey == 3987248){
+      console.log("hey mama");
+    }
 
     if (cat == "restaurant") {
       imageSrc = restaurantIcon.src;
@@ -56,7 +64,6 @@ export const CustomAdvancedMarker =
     
     return (
       <>
-        
         <div className="custom-pin" style={{ backgroundColor: cat === "restaurant" ? "#e6ba1e" :
                                               cat === "UF"         ? "#ff7f36" :
                                               cat === "nature"     ? "#247824" :
@@ -98,18 +105,12 @@ export const CustomAdvancedMarker =
             </span>
           </div>           
 
-          {/*Place Overview only when the marker is clicked */}
-          {clicked && (
-            <div className="details-container">
-              <div className="details-container">
-                <PlaceOverviewExpanded 
-                latitude={position.lat}
-                longitude={position.lng}
-                placeId={placeid}/> 
-                </div>
-            </div>
-          )}
-          
+          <div className="details-container">
+            <PlaceOverviewExpanded 
+            latitude={position.lat}
+            longitude={position.lng}
+            placeId={id}/> 
+          </div>
     
         </div>
 
@@ -133,9 +134,7 @@ export const CustomAdvancedMarker =
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         className={classNames('real-estate-marker', {clicked, hovered})}
-        onClick={() => {
-          setClicked(!clicked);
-        }}>
+        onClick={() => setClicked(!clicked)}>
         {renderCustomPin()}
       </AdvancedMarker>
     </>

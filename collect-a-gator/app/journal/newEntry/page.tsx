@@ -68,7 +68,7 @@ export default function EntryPage({
         else {
           
             const fetchData = async () => {
-              const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/entries`, {
+              const response = await fetch(`http://localhost:5050/api/entries`, {
                   method: "POST",
                   body: JSON.stringify({
                       title: title,
@@ -91,7 +91,7 @@ export default function EntryPage({
 
               const getUserData = async () => {
                 try {
-                    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/` + user?.id, {
+                    const response = await fetch(`http://localhost:5050/api/users/` + user?.id, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json; charset=UTF-8"
@@ -136,7 +136,7 @@ export default function EntryPage({
 
               try {
               console.log("Updated counters before PUT request:", counters);
-              await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/` + user?.id, {
+              await fetch(`http://localhost:5050/api/users/` + user?.id, {
                 method: "PUT",
                 body: JSON.stringify({
                 counters: {
@@ -176,7 +176,7 @@ export default function EntryPage({
                 }
 
                 try {
-                await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/` + user?.id, {
+                await fetch(`http://localhost:5050/api/users/` + user?.id, {
                   method: "PUT",
                   body: JSON.stringify({
                   booleans: {
